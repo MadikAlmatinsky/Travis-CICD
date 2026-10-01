@@ -1,0 +1,24 @@
+name: Python CI
+
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Repository-ді жүктеу
+      uses: actions/checkout@v4
+
+    - name: Python орнату
+      uses: actions/python-v5@v5
+      with:
+        python-version: '3.9'
+
+    - name: Бағдарламаны іске қосу
+      run: python main.py
+
+    - name: Тесттерді орындау
+      run: |
+        pip install pytest
+        pytest test_main.py
